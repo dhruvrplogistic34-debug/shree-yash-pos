@@ -65,21 +65,29 @@ CREATE TABLE IF NOT EXISTS order_items (
 
 -- 3. INDEXES FOR HIGH-SPEED QUERYING
 CREATE INDEX IF NOT EXISTS idx_menu_items_cuisine_category ON menu_items(cuisine, category);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_menu_items_name ON menu_items(name);
 CREATE INDEX IF NOT EXISTS idx_orders_created_at ON orders(created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_orders_payment_status ON orders(payment_status);
 CREATE INDEX IF NOT EXISTS idx_order_items_order_id ON order_items(order_id);
 
 -- 4. ROW LEVEL SECURITY (RLS) POLICIES
--- For POS terminal with anonymous public key access
 ALTER TABLE menu_items ENABLE ROW LEVEL SECURITY;
 ALTER TABLE inventory_items ENABLE ROW LEVEL SECURITY;
 ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
 ALTER TABLE order_items ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "Enable all access for menu_items" ON menu_items;
 CREATE POLICY "Enable all access for menu_items" ON menu_items FOR ALL USING (true) WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Enable all access for inventory_items" ON inventory_items;
 CREATE POLICY "Enable all access for inventory_items" ON inventory_items FOR ALL USING (true) WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Enable all access for orders" ON orders;
 CREATE POLICY "Enable all access for orders" ON orders FOR ALL USING (true) WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Enable all access for order_items" ON order_items;
 CREATE POLICY "Enable all access for order_items" ON order_items FOR ALL USING (true) WITH CHECK (true);
+
 
 -- ====================================================================
 -- SEED DATA: 39 PRE-LOADED MENU ITEMS FOR SHREE YASH HOTEL (CHINESE)
@@ -145,7 +153,7 @@ INSERT INTO menu_items (name, cuisine, category, is_veg, half_price, full_price)
 ('Chicken Pieking Rice', 'Chinese', 'Rice', false, 200.00, 280.00),
 ('Lollypop Masala Rice', 'Chinese', 'Rice', false, 220.00, 320.00),
 ('Shree Yash Special Rice', 'Chinese', 'Rice', false, NULL, NULL) -- Variable / Custom Price
-ON CONFLICT DO NOTHING;
+ON CONFLICT (name) DO NOTHING;
 
 -- ====================================================================
 -- SEED DATA: KITCHEN INVENTORY & RAW INGREDIENTS
