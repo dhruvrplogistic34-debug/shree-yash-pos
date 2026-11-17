@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1A1D24" />
+      <stop offset="100%" stop-color="#0F1115" />
+    </linearGradient>
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FB923C" />
+      <stop offset="100%" stop-color="#EA580C" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="12" flood-color="#F97316" flood-opacity="0.4" />
+    </filter>
+  </defs>
+  <!-- Background Rounded Rect -->
+  <rect width="512" height="512" rx="128" fill="url(#bgGrad)" stroke="#2A2F3D" stroke-width="8" />
+  
+  <!-- Outer accent ring -->
+  <circle cx="256" cy="256" r="190" fill="none" stroke="#F97316" stroke-width="6" stroke-dasharray="8 12" opacity="0.35" />
+  
+  <!-- Flame / Wok Icon -->
+  <g filter="url(#glow)">
+    <!-- Flame -->
+    <path d="M256 90 C265 145 300 170 300 215 C300 255 275 285 240 285 C230 285 220 280 215 272 C210 235 245 200 235 155 C230 180 205 205 195 235 C185 265 190 295 210 315 C175 295 165 250 175 210 C185 170 230 130 256 90 Z" fill="url(#orangeGrad)" />
+    
+    <!-- Wok Base -->
+    <path d="M140 330 Q256 420 372 330 Q256 365 140 330 Z" fill="#F97316" />
+    
+    <!-- Steam Lines -->
+    <path d="M190 280 Q200 255 190 230" stroke="#FDBA74" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.8" />
+    <path d="M320 280 Q310 255 320 230" stroke="#FDBA74" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.8" />
+    
+    <!-- Handles -->
+    <rect x="110" y="325" width="35" height="10" rx="5" fill="#F97316" transform="rotate(-15 110 325)" />
+    <rect x="367" y="325" width="35" height="10" rx="5" fill="#F97316" transform="rotate(15 367 325)" />
+  </g>
+  
+  <!-- Brand text badge -->
+  <text x="256" y="445" font-family="'Inter', sans-serif" font-weight="900" font-size="38" fill="#FFFFFF" text-anchor="middle" letter-spacing="4">SHREE YASH</text>
+  <text x="256" y="475" font-family="'Inter', sans-serif" font-weight="700" font-size="16" fill="#F97316" text-anchor="middle" letter-spacing="8">HOTEL • POS</text>
+</svg>
